@@ -65,5 +65,16 @@ namespace FormsPEC
             if (ctrl != null)
                 aCtrl = (Controller)ctrl;
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string btnSair = oFrmConsEstados.btnSair.Text;
+            oFrmConsEstados.btnSair.Text = "Selecionar";
+            oFrmConsEstados.ConhecaObj(aCidade.OEstado, aCtrl);
+            oFrmConsEstados.ShowDialog();
+            this.txtCodigoEstado.Text = Convert.ToString(aCidade.OEstado.Codigo);
+            this.txtEstado.Text = Convert.ToString(aCidade.OEstado.Estado);
+            oFrmConsEstados.btnSair.Text = btnSair;
+        }
     }
 }
