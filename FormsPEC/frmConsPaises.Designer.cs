@@ -33,19 +33,27 @@
             // btnIncluir
             // 
             this.btnIncluir.Location = new System.Drawing.Point(398, 394);
+            this.btnIncluir.TabIndex = 3;
             // 
             // btnAlterar
             // 
             this.btnAlterar.Location = new System.Drawing.Point(494, 394);
+            this.btnAlterar.TabIndex = 4;
             // 
             // btnExcluir
             // 
             this.btnExcluir.Location = new System.Drawing.Point(590, 394);
+            this.btnExcluir.TabIndex = 5;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.TabIndex = 2;
             // 
             // btnSair
             // 
             this.btnSair.Location = new System.Drawing.Point(686, 394);
             this.btnSair.Size = new System.Drawing.Size(91, 30);
+            this.btnSair.TabIndex = 6;
             // 
             // frmConsPaises
             // 

@@ -29,6 +29,7 @@ namespace FormsPEC
                 aCidade.Cidade = txtCidade.Text;
                 aCidade.Ddd = txtDDD.Text;
                 aCidade.OEstado.Estado = txtEstado.Text;
+                aCidade.OEstado.Codigo = Convert.ToInt32(txtCodigoEstado.Text);
             //aCtrl.Salvar(aCidade);
             //}
         }
@@ -38,6 +39,7 @@ namespace FormsPEC
             this.txtCidade.Text = aCidade.Cidade;
             this.txtDDD.Text = aCidade.Ddd;
             this.txtEstado.Text = aCidade.OEstado.Estado;
+            this.txtCodigoEstado.Text = Convert.ToString(aCidade.OEstado.Codigo);
         }
         public override void LimpaTxt()
         {
@@ -45,18 +47,21 @@ namespace FormsPEC
             this.txtCidade.Clear();
             this.txtDDD.Clear();
             this.txtEstado.Clear();
+            this.txtCodigoEstado.Text = "0";
         }
         public override void BloquearTxt()
         {
             this.txtEstado.Enabled = false;
             this.txtCidade.Enabled = false;
             this.txtDDD.Enabled = false;
+            this.btnBuscar.Enabled = false;
         }
         public override void DesbloquearTxt()
         {
             this.txtEstado.Enabled = true;
             this.txtCidade.Enabled = true;
             this.txtDDD.Enabled = true;
+            this.btnBuscar.Enabled = true;
         }
         public override void ConhecaObj(object obj, object ctrl)
         {

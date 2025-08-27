@@ -45,6 +45,7 @@ namespace FormsPEC
         }
         public override void BloquearTxt()
         {
+            this.txtCodigo.Enabled = false;
             this.txtPais.Enabled = false;
             this.txtSigla.Enabled = false;
             this.txtDDI.Enabled = false;

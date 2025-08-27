@@ -21,17 +21,32 @@ namespace FormsPEC
         protected override void Incluir()
         {
             oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
+            oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.ShowDialog();
         }
         protected override void Alterar()
         {
             oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
+            oFrmCadEstados.LimpaTxt();
+            oFrmCadEstados.CarregaTxt();
             oFrmCadEstados.ShowDialog();
         }
         protected override void Excluir()
         {
+            string aux;
+
             oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
+            oFrmCadEstados.LimpaTxt();
+            oFrmCadEstados.CarregaTxt();
+            oFrmCadEstados.BloquearTxt();
+
+            aux = oFrmCadEstados.btnSalvar.Text;
+            oFrmCadEstados.btnSalvar.Text = "Excluir";
+
             oFrmCadEstados.ShowDialog();
+            oFrmCadEstados.DesbloquearTxt();
+
+            oFrmCadEstados.btnSalvar.Text = aux;
         }
         protected override void Pesquisar()
         {

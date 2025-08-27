@@ -29,6 +29,7 @@ namespace FormsPEC
                 oEstado.Estado = txtEstado.Text;
                 oEstado.Uf = txtUF.Text;
                 oEstado.OPais.Pais = txtPais.Text;
+                oEstado.OPais.Codigo = Convert.ToInt32(txtCodigo.Text);
                 //aCtrl.Salvar(oEstado);
             //}
         }
@@ -38,6 +39,7 @@ namespace FormsPEC
             this.txtPais.Text = oEstado.OPais.Pais;
             this.txtEstado.Text = oEstado.Estado;
             this.txtUF.Text = oEstado.Uf;
+            this.txtCodigoPais.Text = Convert.ToString(oEstado.OPais.Codigo);
         }
         public override void LimpaTxt()
         {
@@ -45,18 +47,21 @@ namespace FormsPEC
             this.txtPais.Clear();
             this.txtEstado.Clear();
             this.txtUF.Clear();
+            this.txtCodigoPais.Text = "0";
         }
         public override void BloquearTxt()
         {
             this.txtPais.Enabled = false;
             this.txtEstado.Enabled = false;
             this.txtUF.Enabled = false;
+            this.btnBuscar.Enabled = false;
         }
         public override void DesbloquearTxt()
         {
             this.txtPais.Enabled = true;
             this.txtEstado.Enabled = true;
             this.txtUF.Enabled = true;
+            this.btnBuscar.Enabled = true;
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {

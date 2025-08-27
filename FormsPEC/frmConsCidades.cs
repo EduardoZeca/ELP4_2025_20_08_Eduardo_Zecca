@@ -20,17 +20,32 @@ namespace FormsPEC
         protected override void Incluir()
         {
             oFrmCadCidades.ConhecaObj(aCidade, aCtrl);
+            oFrmCadCidades.LimpaTxt();
             oFrmCadCidades.ShowDialog();
         }
         protected override void Alterar()
         {
             oFrmCadCidades.ConhecaObj(aCidade, aCtrl);
+            oFrmCadCidades.LimpaTxt();
+            oFrmCadCidades.CarregaTxt();
             oFrmCadCidades.ShowDialog();
         }
         protected override void Excluir()
         {
+            string aux;
+
             oFrmCadCidades.ConhecaObj(aCidade, aCtrl);
+            oFrmCadCidades.LimpaTxt();
+            oFrmCadCidades.CarregaTxt();
+            oFrmCadCidades.BloquearTxt();
+
+            aux = oFrmCadCidades.btnSalvar.Text;
+            oFrmCadCidades.btnSalvar.Text = "Excluir";
+
             oFrmCadCidades.ShowDialog();
+            oFrmCadCidades.DesbloquearTxt();
+
+            oFrmCadCidades.btnSalvar.Text = aux;
         }
         protected override void Pesquisar()
         {

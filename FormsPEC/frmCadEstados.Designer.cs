@@ -39,10 +39,31 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // btnSalvar
+            // 
+            this.btnSalvar.TabIndex = 6;
+            // 
+            // txtUltAlt
+            // 
+            this.txtUltAlt.TabIndex = 16;
+            // 
+            // txtCodUsu
+            // 
+            this.txtCodUsu.TabIndex = 17;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Size = new System.Drawing.Size(80, 22);
+            this.txtCodigo.TabIndex = 10;
+            // 
+            // btnSair
+            // 
+            this.btnSair.TabIndex = 7;
+            // 
             // lblPais
             // 
             this.lblPais.AutoSize = true;
-            this.lblPais.Location = new System.Drawing.Point(451, 9);
+            this.lblPais.Location = new System.Drawing.Point(471, 9);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(34, 16);
             this.lblPais.TabIndex = 10;
@@ -51,7 +72,7 @@
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(134, 9);
+            this.lblEstado.Location = new System.Drawing.Point(115, 9);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(50, 16);
             this.lblEstado.TabIndex = 11;
@@ -60,7 +81,7 @@
             // lblUF
             // 
             this.lblUF.AutoSize = true;
-            this.lblUF.Location = new System.Drawing.Point(275, 9);
+            this.lblUF.Location = new System.Drawing.Point(322, 9);
             this.lblUF.Name = "lblUF";
             this.lblUF.Size = new System.Drawing.Size(25, 16);
             this.lblUF.TabIndex = 12;
@@ -68,29 +89,35 @@
             // 
             // txtPais
             // 
-            this.txtPais.Location = new System.Drawing.Point(454, 24);
+            this.txtPais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPais.Location = new System.Drawing.Point(474, 24);
+            this.txtPais.MaxLength = 55;
             this.txtPais.Name = "txtPais";
-            this.txtPais.Size = new System.Drawing.Size(106, 22);
-            this.txtPais.TabIndex = 13;
+            this.txtPais.Size = new System.Drawing.Size(162, 22);
+            this.txtPais.TabIndex = 4;
             // 
             // txtEstado
             // 
-            this.txtEstado.Location = new System.Drawing.Point(137, 24);
+            this.txtEstado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEstado.Location = new System.Drawing.Point(118, 24);
+            this.txtEstado.MaxLength = 50;
             this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(123, 22);
-            this.txtEstado.TabIndex = 14;
+            this.txtEstado.Size = new System.Drawing.Size(196, 22);
+            this.txtEstado.TabIndex = 1;
             // 
             // txtUF
             // 
-            this.txtUF.Location = new System.Drawing.Point(278, 24);
+            this.txtUF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUF.Location = new System.Drawing.Point(325, 24);
+            this.txtUF.MaxLength = 3;
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(57, 22);
-            this.txtUF.TabIndex = 15;
+            this.txtUF.TabIndex = 2;
             // 
             // lblCodPais
             // 
             this.lblCodPais.AutoSize = true;
-            this.lblCodPais.Location = new System.Drawing.Point(354, 9);
+            this.lblCodPais.Location = new System.Drawing.Point(392, 9);
             this.lblCodPais.Name = "lblCodPais";
             this.lblCodPais.Size = new System.Drawing.Size(51, 16);
             this.lblCodPais.TabIndex = 16;
@@ -98,17 +125,20 @@
             // 
             // txtCodigoPais
             // 
-            this.txtCodigoPais.Location = new System.Drawing.Point(355, 24);
+            this.txtCodigoPais.Enabled = false;
+            this.txtCodigoPais.Location = new System.Drawing.Point(393, 24);
+            this.txtCodigoPais.MaxLength = 3;
             this.txtCodigoPais.Name = "txtCodigoPais";
-            this.txtCodigoPais.Size = new System.Drawing.Size(79, 22);
-            this.txtCodigoPais.TabIndex = 17;
+            this.txtCodigoPais.Size = new System.Drawing.Size(66, 22);
+            this.txtCodigoPais.TabIndex = 3;
+            this.txtCodigoPais.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(575, 22);
+            this.btnBuscar.Location = new System.Drawing.Point(649, 22);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(79, 27);
-            this.btnBuscar.TabIndex = 18;
+            this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -128,6 +158,7 @@
             this.Controls.Add(this.lblPais);
             this.Name = "frmCadEstados";
             this.Text = " Cadastro de Estados";
+            this.Controls.SetChildIndex(this.txtDatCad, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSalvar, 0);

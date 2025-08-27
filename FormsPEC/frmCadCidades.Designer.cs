@@ -39,10 +39,23 @@
             this.txtCodigoEstado = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
+            // btnSalvar
+            // 
+            this.btnSalvar.TabIndex = 6;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Size = new System.Drawing.Size(72, 22);
+            this.txtCodigo.TabIndex = 10;
+            // 
+            // btnSair
+            // 
+            this.btnSair.TabIndex = 7;
+            // 
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(434, 9);
+            this.lblEstado.Location = new System.Drawing.Point(448, 9);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(50, 16);
             this.lblEstado.TabIndex = 10;
@@ -51,7 +64,7 @@
             // lblCidade
             // 
             this.lblCidade.AutoSize = true;
-            this.lblCidade.Location = new System.Drawing.Point(140, 9);
+            this.lblCidade.Location = new System.Drawing.Point(110, 9);
             this.lblCidade.Name = "lblCidade";
             this.lblCidade.Size = new System.Drawing.Size(51, 16);
             this.lblCidade.TabIndex = 11;
@@ -60,7 +73,7 @@
             // lblDDD
             // 
             this.lblDDD.AutoSize = true;
-            this.lblDDD.Location = new System.Drawing.Point(261, 9);
+            this.lblDDD.Location = new System.Drawing.Point(319, 9);
             this.lblDDD.Name = "lblDDD";
             this.lblDDD.Size = new System.Drawing.Size(37, 16);
             this.lblDDD.TabIndex = 12;
@@ -68,31 +81,36 @@
             // 
             // txtDDD
             // 
-            this.txtDDD.Location = new System.Drawing.Point(263, 24);
+            this.txtDDD.Location = new System.Drawing.Point(321, 24);
+            this.txtDDD.MaxLength = 4;
             this.txtDDD.Name = "txtDDD";
             this.txtDDD.Size = new System.Drawing.Size(48, 22);
-            this.txtDDD.TabIndex = 13;
+            this.txtDDD.TabIndex = 2;
             // 
             // txtEstado
             // 
-            this.txtEstado.Location = new System.Drawing.Point(436, 24);
+            this.txtEstado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEstado.Location = new System.Drawing.Point(450, 24);
+            this.txtEstado.MaxLength = 50;
             this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(100, 22);
-            this.txtEstado.TabIndex = 14;
+            this.txtEstado.Size = new System.Drawing.Size(174, 22);
+            this.txtEstado.TabIndex = 4;
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(140, 24);
+            this.txtCidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCidade.Location = new System.Drawing.Point(110, 24);
+            this.txtCidade.MaxLength = 50;
             this.txtCidade.Name = "txtCidade";
-            this.txtCidade.Size = new System.Drawing.Size(100, 22);
-            this.txtCidade.TabIndex = 15;
+            this.txtCidade.Size = new System.Drawing.Size(199, 22);
+            this.txtCidade.TabIndex = 1;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(553, 24);
+            this.btnBuscar.Location = new System.Drawing.Point(636, 24);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(88, 24);
-            this.btnBuscar.TabIndex = 16;
+            this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -100,7 +118,7 @@
             // lblCodEstado
             // 
             this.lblCodEstado.AutoSize = true;
-            this.lblCodEstado.Location = new System.Drawing.Point(334, 9);
+            this.lblCodEstado.Location = new System.Drawing.Point(377, 9);
             this.lblCodEstado.Name = "lblCodEstado";
             this.lblCodEstado.Size = new System.Drawing.Size(51, 16);
             this.lblCodEstado.TabIndex = 17;
@@ -108,10 +126,13 @@
             // 
             // txtCodigoEstado
             // 
-            this.txtCodigoEstado.Location = new System.Drawing.Point(337, 24);
+            this.txtCodigoEstado.Enabled = false;
+            this.txtCodigoEstado.Location = new System.Drawing.Point(380, 24);
+            this.txtCodigoEstado.MaxLength = 3;
             this.txtCodigoEstado.Name = "txtCodigoEstado";
-            this.txtCodigoEstado.Size = new System.Drawing.Size(76, 22);
-            this.txtCodigoEstado.TabIndex = 18;
+            this.txtCodigoEstado.Size = new System.Drawing.Size(59, 22);
+            this.txtCodigoEstado.TabIndex = 3;
+            this.txtCodigoEstado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // frmCadCidades
             // 
@@ -128,6 +149,7 @@
             this.Controls.Add(this.lblEstado);
             this.Name = "frmCadCidades";
             this.Text = " Cadastro de Cidades";
+            this.Controls.SetChildIndex(this.txtDatCad, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSalvar, 0);

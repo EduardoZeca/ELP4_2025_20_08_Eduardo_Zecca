@@ -26,12 +26,26 @@ namespace FormsPEC
         protected override void Alterar()
         {
             oFrmCadPaises.ConhecaObj(oPais, aCtrl);
+            oFrmCadPaises.LimpaTxt();
+            oFrmCadPaises.CarregaTxt();
             oFrmCadPaises.ShowDialog();
         }
         protected override void Excluir()
         {
+            string aux;
+            
             oFrmCadPaises.ConhecaObj(oPais, aCtrl);
+            oFrmCadPaises.LimpaTxt();
+            oFrmCadPaises.CarregaTxt();
+            oFrmCadPaises.BloquearTxt();
+
+            aux = oFrmCadPaises.btnSalvar.Text;
+            oFrmCadPaises.btnSalvar.Text = "Excluir";
+            
             oFrmCadPaises.ShowDialog();
+            oFrmCadPaises.DesbloquearTxt();
+
+            oFrmCadPaises.btnSalvar.Text = aux;
         }
         protected override void Pesquisar()
         {

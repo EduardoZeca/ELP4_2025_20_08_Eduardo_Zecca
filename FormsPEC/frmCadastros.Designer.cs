@@ -38,6 +38,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.MaxLength = 3;
+            // 
             // btnSalvar
             // 
             this.btnSalvar.Location = new System.Drawing.Point(587, 394);
@@ -62,21 +67,21 @@
             this.txtDatCad.Location = new System.Drawing.Point(225, 402);
             this.txtDatCad.Name = "txtDatCad";
             this.txtDatCad.Size = new System.Drawing.Size(100, 22);
-            this.txtDatCad.TabIndex = 4;
+            this.txtDatCad.TabIndex = 11;
             // 
             // txtUltAlt
             // 
             this.txtUltAlt.Location = new System.Drawing.Point(331, 402);
             this.txtUltAlt.Name = "txtUltAlt";
             this.txtUltAlt.Size = new System.Drawing.Size(100, 22);
-            this.txtUltAlt.TabIndex = 5;
+            this.txtUltAlt.TabIndex = 12;
             // 
             // txtCodUsu
             // 
             this.txtCodUsu.Location = new System.Drawing.Point(437, 402);
             this.txtCodUsu.Name = "txtCodUsu";
             this.txtCodUsu.Size = new System.Drawing.Size(100, 22);
-            this.txtCodUsu.TabIndex = 6;
+            this.txtCodUsu.TabIndex = 13;
             // 
             // label1
             // 
@@ -135,14 +140,13 @@
         }
 
         #endregion
-
-        protected System.Windows.Forms.Button btnSalvar;
         protected System.Windows.Forms.Label lbl_Codigo;
-        private System.Windows.Forms.TextBox txtDatCad;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label label3;
-        protected System.Windows.Forms.TextBox txtUltAlt;
-        protected System.Windows.Forms.TextBox txtCodUsu;
+        public System.Windows.Forms.Button btnSalvar;
+        public System.Windows.Forms.TextBox txtDatCad;
+        public System.Windows.Forms.TextBox txtUltAlt;
+        public System.Windows.Forms.TextBox txtCodUsu;
     }
 }
