@@ -31,6 +31,7 @@ namespace FormsPEC
             oFrmCadPaises.LimpaTxt();
             oFrmCadPaises.CarregaTxt();
             oFrmCadPaises.ShowDialog();
+            this.CarregaLV();
         }
         protected override void Excluir()
         {
@@ -48,6 +49,7 @@ namespace FormsPEC
             oFrmCadPaises.DesbloquearTxt();
 
             oFrmCadPaises.btnSalvar.Text = aux;
+            this.CarregaLV();
         }
         protected override void CarregaLV()
         {

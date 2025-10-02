@@ -13,7 +13,6 @@ namespace FormsPEC
         Paises oPais;
         //Controller aCtrl;
         CtrlPaises aCtrlPaises;
-   
         public frmCadPaises()
         {
             InitializeComponent();
@@ -25,7 +24,10 @@ namespace FormsPEC
             oPais.Sigla = txtSigla.Text;
             oPais.Ddi = txtDDI.Text;
             oPais.Moeda = txtMoeda.Text;
-            aCtrlPaises.Salvar(oPais);
+            if (this.btnSalvar.Text == "Excluir")
+                aCtrlPaises.Excluir(oPais);
+            else
+                aCtrlPaises.Salvar(oPais);
         }
         public override void CarregaTxt()
         {
@@ -37,7 +39,11 @@ namespace FormsPEC
         }
         public override void LimpaTxt()
         {
-            this.txtCodigo.Text = "0";
+            List<Paises> lista = aCtrlPaises.Listar();
+            if(lista.Count == 0)
+                this.txtCodigo.Text = "10";
+            else
+                this.txtCodigo.Text = Convert.ToString(lista[lista.Count - 1].Codigo + 1);
             this.txtPais.Clear();
             this.txtSigla.Clear();
             this.txtDDI.Clear();
