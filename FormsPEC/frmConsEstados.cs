@@ -23,6 +23,7 @@ namespace FormsPEC
             oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.ShowDialog();
+            this.CarregaLV();
         }
         protected override void Alterar()
         {
@@ -47,6 +48,15 @@ namespace FormsPEC
             oFrmCadEstados.DesbloquearTxt();
 
             oFrmCadEstados.btnSalvar.Text = aux;
+        }
+        protected override void CarregaLV()
+        {
+            ListViewItem item = new ListViewItem(Convert.ToString(oEstado.Codigo));
+            item.SubItems.Add(oEstado.Estado);
+            item.SubItems.Add(oEstado.Uf);
+            item.SubItems.Add(Convert.ToString(oEstado.OPais.Codigo));
+            item.SubItems.Add(oEstado.OPais.Pais);
+            listV.Items.Add(item);
         }
         protected override void Pesquisar()
         {

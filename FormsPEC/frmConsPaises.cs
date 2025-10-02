@@ -12,20 +12,22 @@ namespace FormsPEC
     {
         frmCadPaises oFrmCadPaises;
         Paises oPais;
-        Controller aCtrl;
+        CtrlPaises aCtrlPaises;
+        //Controller aCtrl;
         public frmConsPaises()
         {
             InitializeComponent();
         }
         protected override void Incluir()
         {
-            oFrmCadPaises.ConhecaObj(oPais, aCtrl);
+            oFrmCadPaises.ConhecaObj(oPais, aCtrlPaises);
             oFrmCadPaises.LimpaTxt();
             oFrmCadPaises.ShowDialog();
+            this.CarregaLV();
         }
         protected override void Alterar()
         {
-            oFrmCadPaises.ConhecaObj(oPais, aCtrl);
+            oFrmCadPaises.ConhecaObj(oPais, aCtrlPaises);
             oFrmCadPaises.LimpaTxt();
             oFrmCadPaises.CarregaTxt();
             oFrmCadPaises.ShowDialog();
@@ -34,7 +36,7 @@ namespace FormsPEC
         {
             string aux;
             
-            oFrmCadPaises.ConhecaObj(oPais, aCtrl);
+            oFrmCadPaises.ConhecaObj(oPais, aCtrlPaises);
             oFrmCadPaises.LimpaTxt();
             oFrmCadPaises.CarregaTxt();
             oFrmCadPaises.BloquearTxt();
@@ -47,9 +49,22 @@ namespace FormsPEC
 
             oFrmCadPaises.btnSalvar.Text = aux;
         }
+        protected override void CarregaLV()
+        {
+            listV.Items.Clear();
+            foreach (Paises pais in aCtrlPaises.Listar())
+            {
+                ListViewItem item = new ListViewItem(Convert.ToString(pais.Codigo));
+                item.SubItems.Add(pais.Pais);
+                item.SubItems.Add(pais.Sigla);
+                item.SubItems.Add(pais.Ddi);
+                item.SubItems.Add(pais.Moeda);
+                listV.Items.Add(item);
+            }
+        }
         protected override void Pesquisar()
         {
-            
+            //aCtrlPaises.Buscar();
         }
         public override void setFrmCadastro(object obj)
         {
@@ -61,8 +76,12 @@ namespace FormsPEC
             if(obj != null)
                 oPais = (Paises)obj;
             if(ctrl != null)
-                aCtrl = (Controller)ctrl;
+                aCtrlPaises = (CtrlPaises)ctrl;
         }
 
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            Pesquisar();
+        }
     }
 }

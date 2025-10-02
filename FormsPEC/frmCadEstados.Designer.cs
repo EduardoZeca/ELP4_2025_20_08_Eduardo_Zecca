@@ -90,6 +90,7 @@
             // txtPais
             // 
             this.txtPais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPais.Enabled = false;
             this.txtPais.Location = new System.Drawing.Point(474, 24);
             this.txtPais.MaxLength = 55;
             this.txtPais.Name = "txtPais";

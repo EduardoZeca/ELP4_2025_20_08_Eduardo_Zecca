@@ -11,21 +11,21 @@ namespace FormsPEC
     public partial class frmCadPaises : FormsPEC.frmCadastros
     {
         Paises oPais;
-        Controller aCtrl;
+        //Controller aCtrl;
+        CtrlPaises aCtrlPaises;
+   
         public frmCadPaises()
         {
             InitializeComponent();
         }
         public override void Salvar()
-        {
-            //if(Message("Confirma (S/N)") == "S") { 
-                oPais.Codigo = Convert.ToInt32(txtCodigo.Text);
-                oPais.Pais = txtPais.Text;
-                oPais.Sigla = txtSigla.Text;
-                oPais.Ddi = txtDDI.Text;
-                oPais.Moeda = txtMoeda.Text;
-                //aCtrl.Salvar(oPais);
-            //}
+        { 
+            oPais.Codigo = Convert.ToInt32(txtCodigo.Text);
+            oPais.Pais = txtPais.Text;
+            oPais.Sigla = txtSigla.Text;
+            oPais.Ddi = txtDDI.Text;
+            oPais.Moeda = txtMoeda.Text;
+            aCtrlPaises.Salvar(oPais);
         }
         public override void CarregaTxt()
         {
@@ -63,7 +63,7 @@ namespace FormsPEC
             if(obj != null)
                 oPais = (Paises)obj;
             if(ctrl != null)
-                aCtrl = (Controller)ctrl;
+                aCtrlPaises = (CtrlPaises)ctrl;
         }
     }
 }

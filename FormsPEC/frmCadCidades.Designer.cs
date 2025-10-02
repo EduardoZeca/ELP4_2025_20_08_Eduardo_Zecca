@@ -90,6 +90,7 @@
             // txtEstado
             // 
             this.txtEstado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEstado.Enabled = false;
             this.txtEstado.Location = new System.Drawing.Point(450, 24);
             this.txtEstado.MaxLength = 50;
             this.txtEstado.Name = "txtEstado";

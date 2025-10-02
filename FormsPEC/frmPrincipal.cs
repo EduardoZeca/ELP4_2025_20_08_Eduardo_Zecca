@@ -17,7 +17,7 @@ namespace FormsPEC
         Estados oEstado = new Estados();
         Cidades aCidade = new Cidades();
         Controller aCtrl = new Controller();
-        //Paises oPais2 = new Paises();
+        CtrlPaises aCtrlPaises = new CtrlPaises();
         public frmPrincipal()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace FormsPEC
 
         private void paisesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            aInter.PecaPaises(oPais, aCtrl);
+            aInter.PecaPaises(oPais, aCtrlPaises);
         }
         private void estadosToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -17,11 +17,15 @@ namespace FormsPEC
             estado = string.Empty;
             uf = string.Empty;
         }
-        public Estados(int codigo, DateTime datcad, DateTime ultalt, Paises oPais, string estado, string uf) : base(codigo, datcad, ultalt)
+        public Estados(int codigo, DateTime datcad, DateTime ultalt, string estado, string uf, Paises oPais) : base(codigo, datcad, ultalt)
         {
             this.oPais = oPais;
             this.estado = estado;
             this.uf = uf;
+        }
+        public Estados Clone()
+        {
+            return new Estados(this.codigo, this.datcad, this.ultalt, this.estado, this.uf, this.oPais.Clone());
         }
         public string Estado
         {

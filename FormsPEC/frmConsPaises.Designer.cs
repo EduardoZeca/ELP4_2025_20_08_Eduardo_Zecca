@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.colPais = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSigla = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDDI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMoeda = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnIncluir
@@ -48,12 +52,41 @@
             // btnPesquisar
             // 
             this.btnPesquisar.TabIndex = 2;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
+            // listV
+            // 
+            this.listV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colPais,
+            this.colSigla,
+            this.colDDI,
+            this.colMoeda});
             // 
             // btnSair
             // 
             this.btnSair.Location = new System.Drawing.Point(686, 394);
             this.btnSair.Size = new System.Drawing.Size(91, 30);
             this.btnSair.TabIndex = 6;
+            // 
+            // colPais
+            // 
+            this.colPais.Text = "Pais";
+            this.colPais.Width = 200;
+            // 
+            // colSigla
+            // 
+            this.colSigla.Text = "Sigla";
+            this.colSigla.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // colDDI
+            // 
+            this.colDDI.Text = "DDI";
+            this.colDDI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // colMoeda
+            // 
+            this.colMoeda.Text = "Moeda";
+            this.colMoeda.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmConsPaises
             // 
@@ -67,5 +100,10 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ColumnHeader colPais;
+        private System.Windows.Forms.ColumnHeader colSigla;
+        private System.Windows.Forms.ColumnHeader colDDI;
+        private System.Windows.Forms.ColumnHeader colMoeda;
     }
 }

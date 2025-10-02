@@ -12,6 +12,9 @@ namespace FormsPEC
         {
 
         }
-
+        public virtual void Salvar(object obj)
+        {}
+        public virtual void Excluir(object obj)
+        {}
     }
 }

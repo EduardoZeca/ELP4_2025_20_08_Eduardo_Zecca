@@ -22,6 +22,7 @@ namespace FormsPEC
             oFrmCadCidades.ConhecaObj(aCidade, aCtrl);
             oFrmCadCidades.LimpaTxt();
             oFrmCadCidades.ShowDialog();
+            this.CarregaLV();
         }
         protected override void Alterar()
         {
@@ -46,6 +47,15 @@ namespace FormsPEC
             oFrmCadCidades.DesbloquearTxt();
 
             oFrmCadCidades.btnSalvar.Text = aux;
+        }
+        protected override void CarregaLV()
+        {
+            ListViewItem item = new ListViewItem(Convert.ToString(aCidade.Codigo));
+            item.SubItems.Add(aCidade.Cidade);
+            item.SubItems.Add(aCidade.Ddd);
+            item.SubItems.Add(Convert.ToString(aCidade.OEstado.Codigo));
+            item.SubItems.Add(aCidade.OEstado.Estado);
+            listV.Items.Add(item);
         }
         protected override void Pesquisar()
         {

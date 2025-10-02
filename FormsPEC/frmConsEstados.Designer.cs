@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.colEstado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colUF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCodPais = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPais = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnIncluir
@@ -42,10 +46,38 @@
             // 
             this.btnExcluir.Location = new System.Drawing.Point(590, 394);
             // 
+            // listV
+            // 
+            this.listV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colEstado,
+            this.colUF,
+            this.colCodPais,
+            this.colPais});
+            // 
             // btnSair
             // 
             this.btnSair.Location = new System.Drawing.Point(686, 394);
             this.btnSair.Size = new System.Drawing.Size(89, 30);
+            // 
+            // colEstado
+            // 
+            this.colEstado.Text = "Estado";
+            this.colEstado.Width = 200;
+            // 
+            // colUF
+            // 
+            this.colUF.Text = "UF";
+            this.colUF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // colCodPais
+            // 
+            this.colCodPais.Text = "Codigo Pais";
+            this.colCodPais.Width = 90;
+            // 
+            // colPais
+            // 
+            this.colPais.Text = "Pais";
+            this.colPais.Width = 200;
             // 
             // frmConsEstados
             // 
@@ -59,5 +91,10 @@
         }
 
         #endregion
+
+        protected System.Windows.Forms.ColumnHeader colEstado;
+        protected System.Windows.Forms.ColumnHeader colUF;
+        protected System.Windows.Forms.ColumnHeader colCodPais;
+        protected System.Windows.Forms.ColumnHeader colPais;
     }
 }

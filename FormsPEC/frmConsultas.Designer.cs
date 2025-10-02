@@ -33,6 +33,7 @@
             this.btnIncluir = new System.Windows.Forms.Button();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.listV = new System.Windows.Forms.ListView();
+            this.colCodigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // txtCodigo
@@ -85,12 +86,21 @@
             // 
             // listV
             // 
+            this.listV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colCodigo});
+            this.listV.FullRowSelect = true;
+            this.listV.GridLines = true;
             this.listV.HideSelection = false;
             this.listV.Location = new System.Drawing.Point(29, 64);
             this.listV.Name = "listV";
             this.listV.Size = new System.Drawing.Size(746, 312);
             this.listV.TabIndex = 6;
             this.listV.UseCompatibleStateImageBehavior = false;
+            this.listV.View = System.Windows.Forms.View.Details;
+            // 
+            // colCodigo
+            // 
+            this.colCodigo.Text = "Codigo";
             // 
             // frmConsultas
             // 
@@ -119,6 +129,7 @@
         protected System.Windows.Forms.Button btnAlterar;
         protected System.Windows.Forms.Button btnExcluir;
         protected System.Windows.Forms.Button btnPesquisar;
-        protected System.Windows.Forms.ListView listV;
+        public System.Windows.Forms.ListView listV;
+        protected System.Windows.Forms.ColumnHeader colCodigo;
     }
 }

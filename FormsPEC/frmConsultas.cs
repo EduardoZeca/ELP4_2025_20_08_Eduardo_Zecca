@@ -31,6 +31,10 @@ namespace FormsPEC
         {
 
         }
+        protected virtual void CarregaLV()
+        { 
+        
+        }
         public virtual void setFrmCadastro(object obj)
         {
         
