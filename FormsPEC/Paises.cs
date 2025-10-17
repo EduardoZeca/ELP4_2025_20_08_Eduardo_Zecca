@@ -21,6 +21,13 @@ namespace FormsPEC
             ddi   = string.Empty;
             moeda = string.Empty;
         }
+        public Paises(int codigo, string pais) : base(codigo)
+        {
+            this.pais  = pais;
+            this.sigla = string.Empty;
+            this.ddi   = string.Empty;
+            this.moeda = string.Empty;
+        }
         public Paises(int codigo, DateTime datcad, DateTime ultalt, string pais, string sigla, string ddi, string moeda) : base(codigo, datcad, ultalt)
         {
             this.pais  = pais;

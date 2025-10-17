@@ -12,7 +12,7 @@ namespace FormsPEC
     {
         frmCadEstados oFrmCadEstados;
         Estados oEstado;
-        Controller aCtrl;
+        CtrlEstados aCtrlEstados;
         public frmConsEstados()
         {
             InitializeComponent();
@@ -20,14 +20,14 @@ namespace FormsPEC
     
         protected override void Incluir()
         {
-            oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
+            oFrmCadEstados.ConhecaObj(oEstado, aCtrlEstados);
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.ShowDialog();
             this.CarregaLV();
         }
         protected override void Alterar()
         {
-            oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
+            oFrmCadEstados.ConhecaObj(oEstado, aCtrlEstados);
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.CarregaTxt();
             oFrmCadEstados.ShowDialog();
@@ -36,7 +36,7 @@ namespace FormsPEC
         {
             string aux;
 
-            oFrmCadEstados.ConhecaObj(oEstado, aCtrl);
+            oFrmCadEstados.ConhecaObj(oEstado, aCtrlEstados);
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.CarregaTxt();
             oFrmCadEstados.BloquearTxt();
@@ -67,12 +67,12 @@ namespace FormsPEC
             if (obj != null)
                 oFrmCadEstados = (frmCadEstados)obj;
         }
-        public override void ConhecaObj(object obj, object ctrl)
-        {
-            if (obj != null)
-                oEstado = (Estados)obj;
-            if (ctrl != null)
-                aCtrl = (Controller)ctrl;
-        }
+        //public override void ConhecaObj(object obj, object ctrl)
+        //{
+        //    if (obj != null)
+        //        oEstado = (Estados)obj;
+        //    if (ctrl != null)
+        //        aCtrl = (Controller)ctrl;
+        //}
     }
 }

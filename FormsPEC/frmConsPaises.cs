@@ -13,7 +13,6 @@ namespace FormsPEC
         frmCadPaises oFrmCadPaises;
         Paises oPais;
         CtrlPaises aCtrlPaises;
-        //Controller aCtrl;
         public frmConsPaises()
         {
             InitializeComponent();
@@ -80,7 +79,6 @@ namespace FormsPEC
             if(ctrl != null)
                 aCtrlPaises = (CtrlPaises)ctrl;
         }
-
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             Pesquisar();

@@ -12,7 +12,7 @@ namespace FormsPEC
     {
         Estados oEstado;
         frmConsPaises oFrmConsPaises;
-        Controller aCtrl;
+        CtrlEstados aCtrlEstado;
         public frmCadEstados()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace FormsPEC
         {
             string btnSair = oFrmConsPaises.btnSair.Text;
             oFrmConsPaises.btnSair.Text = "Selecionar";
-            oFrmConsPaises.ConhecaObj(oEstado.OPais, aCtrl);
+            oFrmConsPaises.ConhecaObj(oEstado.OPais, aCtrlEstado);
             oFrmConsPaises.ShowDialog();
             this.txtCodigoPais.Text = Convert.ToString(oEstado.OPais.Codigo);
             this.txtPais.Text = Convert.ToString(oEstado.OPais.Pais);
@@ -75,10 +75,10 @@ namespace FormsPEC
         }
         public override void ConhecaObj(object obj, object ctrl)
         {
-            if(obj != null)
+            if (obj != null)
                 oEstado = (Estados)obj;
-            if(ctrl != null)
-                aCtrl = (Controller)ctrl;
+            if (ctrl != null)
+                aCtrlEstado = (CtrlEstados)ctrl;
         }
     }
 }

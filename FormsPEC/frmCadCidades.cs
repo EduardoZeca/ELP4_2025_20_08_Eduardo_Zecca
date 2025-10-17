@@ -12,7 +12,7 @@ namespace FormsPEC
     {
         Cidades aCidade;
         frmConsEstados oFrmConsEstados;
-        Controller aCtrl;
+        Controller<Cidades> aCtrl;
         public frmCadCidades()
         {
             InitializeComponent();
@@ -63,13 +63,13 @@ namespace FormsPEC
             this.txtDDD.Enabled = true;
             this.btnBuscar.Enabled = true;
         }
-        public override void ConhecaObj(object obj, object ctrl)
-        {
-            if (obj != null)
-                aCidade = (Cidades)obj;
-            if (ctrl != null)
-                aCtrl = (Controller)ctrl;
-        }
+        //public override void ConhecaObj(object obj, object ctrl)
+        //{
+        //    if (obj != null)
+        //        aCidade = (Cidades)obj;
+        //    if (ctrl != null)
+        //        aCtrl = (Controller)ctrl;
+        //}
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {

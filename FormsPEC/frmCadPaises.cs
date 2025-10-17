@@ -25,9 +25,10 @@ namespace FormsPEC
             oPais.Ddi = txtDDI.Text;
             oPais.Moeda = txtMoeda.Text;
             if (this.btnSalvar.Text == "Excluir")
-                aCtrlPaises.Excluir(oPais);
+                MessageBox.Show(aCtrlPaises.Excluir(oPais));
             else
-                aCtrlPaises.Salvar(oPais);
+                //aCtrlPaises.Salvar(oPais);
+                MessageBox.Show(aCtrlPaises.Salvar(oPais.Clone()));
         }
         public override void CarregaTxt()
         {
@@ -39,11 +40,12 @@ namespace FormsPEC
         }
         public override void LimpaTxt()
         {
-            List<Paises> lista = aCtrlPaises.Listar();
-            if(lista.Count == 0)
-                this.txtCodigo.Text = "10";
-            else
-                this.txtCodigo.Text = Convert.ToString(lista[lista.Count - 1].Codigo + 1);
+            //List<Paises> lista = aCtrlPaises.Listar();
+            //if(lista.Count == 0)
+            //    this.txtCodigo.Text = "0";
+            //else
+            //    this.txtCodigo.Text = Convert.ToString(lista[lista.Count - 1].Codigo + 1);
+            this.txtCodigo.Text = "0";
             this.txtPais.Clear();
             this.txtSigla.Clear();
             this.txtDDI.Clear();

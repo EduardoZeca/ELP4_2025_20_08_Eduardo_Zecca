@@ -12,7 +12,7 @@ namespace FormsPEC
     {
         frmCadCidades oFrmCadCidades;
         Cidades aCidade;
-        Controller aCtrl;
+        Controller<Cidades> aCtrl;
         public frmConsCidades()
         {
             InitializeComponent();
@@ -66,12 +66,12 @@ namespace FormsPEC
             if (obj != null)
                 oFrmCadCidades = (frmCadCidades)obj;
         }
-        public override void ConhecaObj(object obj, object ctrl)
-        {
-            if (obj != null)
-                aCidade = (Cidades)obj;
-            if (ctrl != null)
-                aCtrl = (Controller)ctrl;
-        }
+        //public override void ConhecaObj(object obj, object ctrl)
+        //{
+        //    if (obj != null)
+        //        aCidade = (Cidades)obj;
+        //    if (ctrl != null)
+        //        aCtrl = (Controller)ctrl;
+        //}
     }
 }

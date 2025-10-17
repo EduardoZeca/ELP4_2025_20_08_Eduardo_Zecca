@@ -17,6 +17,10 @@ namespace FormsPEC
             datcad = DateTime.Now;
             ultalt = DateTime.Now;
         }
+        public Pai(int codigo) : this()
+        {
+            this.codigo = codigo;
+        }
 
         public Pai(int codigo, DateTime datcad, DateTime ultalt)
         {
