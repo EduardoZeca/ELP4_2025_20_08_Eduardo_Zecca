@@ -43,17 +43,17 @@ namespace FormsPEC
         public override List<Cidades> Listar()
         {
             List<Cidades> listaCidades = new List<Cidades>();
-            string mSql = "select c.id, c.cidade, c.ddd, e.id, e.estado from cidades c inner join estados e on c.id_estado = e.id order by c.id_estado";
+            string mSql = @"select c.id, c.cidade, c.ddd, e.id, e.estado from cidades c inner join estados e on c.id_estado = e.id order by c.id_estado";
             using (SqlCommand cmd = new SqlCommand(mSql, cnn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    
+
                     while (reader.Read())
                     {
                         Estados oEstado = new Estados
                         {
-                            Codigo = Convert.ToInt32(reader["estadoId"]),
+                            Codigo = Convert.ToInt32(reader["id"]),
                             Estado = Convert.ToString(reader["estado"])
                         };
                         Cidades aCidade = new Cidades
@@ -68,32 +68,6 @@ namespace FormsPEC
                 }
             }
             return listaCidades;
-
-            //string mSql = "select e.id, e.estado, e.uf, e.id_pais, p.pais from estados e inner join paises p on e.id_pais = p.id order by e.id";
-            //using (SqlCommand cmd = new SqlCommand(mSql, cnn))
-            //{
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    List<Estados> lista = new List<Estados>();
-            //    while (reader.Read())
-            //    {
-            //        Paises oPais = new Paises(
-            //            Convert.ToInt32(reader["id_pais"]),
-            //            reader["pais"].ToString()
-            //        );
-            //        Estados oEstado = new Estados(
-            //            Convert.ToInt32(reader["e.id"]),
-            //            Convert.ToDateTime(reader["e.datcad"]),
-            //            Convert.ToDateTime(reader["e.ultalt"]),
-            //            reader["e.estado"].ToString(),
-            //            reader["e.uf"].ToString(),
-            //            oPais
-            //        );
-            //        lista.Add(oEstado);
-            //    }
-            //    reader.Close();
-            //    return lista;
-            }
-
-
+        }
     }
 }

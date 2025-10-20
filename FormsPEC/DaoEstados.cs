@@ -34,7 +34,10 @@ namespace FormsPEC
         }
         public override List<Estados> Listar()
         {
-            string mSql = "select e.id, e.estado, e.uf, e.id_pais, p.pais from estados e inner join paises p on e.id_pais = p.id order by e.id";
+            //string mSql = "select e.id, e.estado, e.uf, e.id_pais, p.pais from estados e inner join paises p on e.id_pais = p.id order by e.id";
+            string mSql = "select e.id as id_estado, e.datcad, e.ultalt, e.estado, e.uf, e.id_pais, " +
+                          "p.id as id_pais, p.datcad, p.ultalt, p.pais, p.sigla, p.ddi, p.moeda " +
+                          "from estados e inner join paises p on e.id_pais = p.id order by e.id";
             using (SqlCommand cmd = new SqlCommand(mSql, cnn))
             {
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -43,14 +46,19 @@ namespace FormsPEC
                 {
                     Paises oPais = new Paises (
                         Convert.ToInt32(reader["id_pais"]),
-                        reader["pais"].ToString()
+                        Convert.ToDateTime(reader["datcad"]),
+                        Convert.ToDateTime(reader["ultalt"]),
+                        reader["pais"].ToString(),
+                        reader["sigla"].ToString(),
+                        reader["ddi"].ToString(),
+                        reader["moeda"].ToString()
                     );
                     Estados oEstado = new Estados(
-                        Convert.ToInt32(reader["e.id"]),
+                        Convert.ToInt32(reader["e.id_estado"]),
                         Convert.ToDateTime(reader["e.datcad"]),
                         Convert.ToDateTime(reader["e.ultalt"]),
-                        reader["e.estado"].ToString(),
-                        reader["e.uf"].ToString(),
+                        reader["estado"].ToString(),
+                        reader["uf"].ToString(),
                         oPais
                     );
                     lista.Add(oEstado);
