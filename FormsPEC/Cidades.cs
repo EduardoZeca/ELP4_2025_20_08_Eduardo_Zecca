@@ -23,6 +23,12 @@ namespace FormsPEC
             this.cidade = cidade;
             this.ddd = ddd;
         }
+        public Cidades(int codigo, string cidade, string ddd, Estados oEstado) : base(codigo)
+        {
+            this.cidade = cidade;
+            this.ddd = ddd;
+            this.oEstado = oEstado;
+        }
         public Cidades Clone()
         {
             return new Cidades(this.codigo, this.datcad, this.ultalt, this.cidade, this.ddd, this.oEstado.Clone());

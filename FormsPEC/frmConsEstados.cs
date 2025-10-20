@@ -31,6 +31,7 @@ namespace FormsPEC
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.CarregaTxt();
             oFrmCadEstados.ShowDialog();
+            this.CarregaLV();
         }
         protected override void Excluir()
         {
@@ -48,31 +49,36 @@ namespace FormsPEC
             oFrmCadEstados.DesbloquearTxt();
 
             oFrmCadEstados.btnSalvar.Text = aux;
+            this.CarregaLV();
         }
         protected override void CarregaLV()
         {
-            ListViewItem item = new ListViewItem(Convert.ToString(oEstado.Codigo));
-            item.SubItems.Add(oEstado.Estado);
-            item.SubItems.Add(oEstado.Uf);
-            item.SubItems.Add(Convert.ToString(oEstado.OPais.Codigo));
-            item.SubItems.Add(oEstado.OPais.Pais);
-            listV.Items.Add(item);
+            listV.Items.Clear();
+            foreach (var oEstado in aCtrlEstados.Listar())
+            {
+                ListViewItem item = new ListViewItem(Convert.ToString(oEstado.Codigo));
+                item.SubItems.Add(oEstado.Estado);
+                item.SubItems.Add(oEstado.Uf);
+                item.SubItems.Add(Convert.ToString(oEstado.OPais.Codigo));
+                item.SubItems.Add(oEstado.OPais.Pais);
+                listV.Items.Add(item);
+            }
         }
         protected override void Pesquisar()
         {
-
+            this.CarregaLV();
         }
         public override void setFrmCadastro(object obj)
         {
             if (obj != null)
                 oFrmCadEstados = (frmCadEstados)obj;
         }
-        //public override void ConhecaObj(object obj, object ctrl)
-        //{
-        //    if (obj != null)
-        //        oEstado = (Estados)obj;
-        //    if (ctrl != null)
-        //        aCtrl = (Controller)ctrl;
-        //}
+        public override void ConhecaObj(object obj, object ctrl)
+        {
+            if (obj != null)
+                oEstado = (Estados)obj;
+            if (ctrl != null)
+                aCtrlEstados = (CtrlEstados)ctrl;
+        }
     }
 }

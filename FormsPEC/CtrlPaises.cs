@@ -10,11 +10,11 @@ namespace FormsPEC
 {
     internal class CtrlPaises : Controller<Paises>
     {
-        ColPaises aColPaises;
+        //ColPaises aColPaises;
         DaoPaises aDaoPaises;
         public CtrlPaises()
         {
-            aColPaises = new ColPaises();
+            //aColPaises = new ColPaises();
             aDaoPaises = new DaoPaises();
         }
         public override string Salvar(object obj)

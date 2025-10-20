@@ -66,6 +66,7 @@ namespace FormsPEC
         protected override void Pesquisar()
         {
             //aCtrlPaises.Buscar();
+            this.CarregaLV();
         }
         public override void setFrmCadastro(object obj)
         {

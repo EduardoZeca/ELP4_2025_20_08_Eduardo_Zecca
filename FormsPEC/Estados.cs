@@ -23,6 +23,12 @@ namespace FormsPEC
             this.estado = estado;
             this.uf = uf;
         }
+        public Estados(string estado, int codigo) : base(codigo)
+        {
+            this.estado = estado;
+            this.uf = string.Empty;
+            this.oPais = new Paises();
+        }
         public Estados Clone()
         {
             return new Estados(this.codigo, this.datcad, this.ultalt, this.estado, this.uf, this.oPais.Clone());

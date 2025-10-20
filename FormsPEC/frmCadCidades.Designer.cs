@@ -43,14 +43,14 @@
             // 
             this.btnSalvar.TabIndex = 6;
             // 
+            // btnSair
+            // 
+            this.btnSair.TabIndex = 7;
+            // 
             // txtCodigo
             // 
             this.txtCodigo.Size = new System.Drawing.Size(72, 22);
             this.txtCodigo.TabIndex = 10;
-            // 
-            // btnSair
-            // 
-            this.btnSair.TabIndex = 7;
             // 
             // lblEstado
             // 
@@ -90,7 +90,6 @@
             // txtEstado
             // 
             this.txtEstado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtEstado.Enabled = false;
             this.txtEstado.Location = new System.Drawing.Point(450, 24);
             this.txtEstado.MaxLength = 50;
             this.txtEstado.Name = "txtEstado";
@@ -127,7 +126,6 @@
             // 
             // txtCodigoEstado
             // 
-            this.txtCodigoEstado.Enabled = false;
             this.txtCodigoEstado.Location = new System.Drawing.Point(380, 24);
             this.txtCodigoEstado.MaxLength = 3;
             this.txtCodigoEstado.Name = "txtCodigoEstado";

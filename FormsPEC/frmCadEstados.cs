@@ -12,7 +12,8 @@ namespace FormsPEC
     {
         Estados oEstado;
         frmConsPaises oFrmConsPaises;
-        CtrlEstados aCtrlEstado;
+        CtrlEstados aCtrlEstados;
+        
         public frmCadEstados()
         {
             InitializeComponent();
@@ -24,14 +25,16 @@ namespace FormsPEC
         }
         public override void Salvar()
         {
-            //if(Message("Confirma (S/N)") == "S") { 
-                oEstado.Codigo = Convert.ToInt32(txtCodigo.Text);
-                oEstado.Estado = txtEstado.Text;
-                oEstado.Uf = txtUF.Text;
-                oEstado.OPais.Pais = txtPais.Text;
-                oEstado.OPais.Codigo = Convert.ToInt32(txtCodigo.Text);
-                //aCtrl.Salvar(oEstado);
-            //}
+            oEstado.Codigo = Convert.ToInt32(txtCodigo.Text);
+            oEstado.Estado = txtEstado.Text;
+            oEstado.Uf = txtUF.Text;
+            oEstado.OPais.Pais = txtPais.Text;
+            oEstado.OPais.Codigo = Convert.ToInt32(txtCodigo.Text);
+            if (this.btnSalvar.Text == "Excluir")
+                MessageBox.Show(aCtrlEstados.Excluir(oEstado));
+            else
+                //aCtrlEstados.Salvar(oEstado);
+                MessageBox.Show(aCtrlEstados.Salvar(oEstado.Clone()));
         }
         public override void CarregaTxt()
         {
@@ -54,6 +57,7 @@ namespace FormsPEC
             this.txtPais.Enabled = false;
             this.txtEstado.Enabled = false;
             this.txtUF.Enabled = false;
+            this.txtCodigoPais.Enabled = false;
             this.btnBuscar.Enabled = false;
         }
         public override void DesbloquearTxt()
@@ -61,13 +65,14 @@ namespace FormsPEC
             this.txtPais.Enabled = true;
             this.txtEstado.Enabled = true;
             this.txtUF.Enabled = true;
+            this.txtCodigoPais.Enabled = true;
             this.btnBuscar.Enabled = true;
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string btnSair = oFrmConsPaises.btnSair.Text;
             oFrmConsPaises.btnSair.Text = "Selecionar";
-            oFrmConsPaises.ConhecaObj(oEstado.OPais, aCtrlEstado);
+            oFrmConsPaises.ConhecaObj(oEstado.OPais, aCtrlEstados.ACtrlPaises);
             oFrmConsPaises.ShowDialog();
             this.txtCodigoPais.Text = Convert.ToString(oEstado.OPais.Codigo);
             this.txtPais.Text = Convert.ToString(oEstado.OPais.Pais);
@@ -78,7 +83,7 @@ namespace FormsPEC
             if (obj != null)
                 oEstado = (Estados)obj;
             if (ctrl != null)
-                aCtrlEstado = (CtrlEstados)ctrl;
+                aCtrlEstados = (CtrlEstados)ctrl;
         }
     }
 }

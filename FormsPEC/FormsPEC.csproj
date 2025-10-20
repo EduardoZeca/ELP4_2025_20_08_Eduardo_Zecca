@@ -63,13 +63,16 @@
   <ItemGroup>
     <Compile Include="Banco.cs" />
     <Compile Include="Cidades.cs" />
+    <Compile Include="ColCidades.cs" />
     <Compile Include="Colecoes.cs" />
     <Compile Include="ColEstados.cs" />
     <Compile Include="ColPaises.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="CtrlCidades.cs" />
     <Compile Include="CtrlEstados.cs" />
     <Compile Include="CtrlPaises.cs" />
     <Compile Include="DAO.cs" />
+    <Compile Include="DaoCidades.cs" />
     <Compile Include="DaoEstados.cs" />
     <Compile Include="DaoPaises.cs" />
     <Compile Include="Estados.cs" />

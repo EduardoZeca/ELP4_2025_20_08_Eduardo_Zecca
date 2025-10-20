@@ -12,7 +12,7 @@ namespace FormsPEC
     {
         Cidades aCidade;
         frmConsEstados oFrmConsEstados;
-        Controller<Cidades> aCtrl;
+        CtrlCidades aCtrlCidades;
         public frmCadCidades()
         {
             InitializeComponent();
@@ -23,15 +23,17 @@ namespace FormsPEC
                 oFrmConsEstados = (frmConsEstados)obj;
         }
         public override void Salvar()
-        {
-            //if(Message("Confirma (S/N)") == "S") { 
-                aCidade.Codigo = Convert.ToInt32(txtCodigo.Text);
-                aCidade.Cidade = txtCidade.Text;
-                aCidade.Ddd = txtDDD.Text;
-                aCidade.OEstado.Estado = txtEstado.Text;
-                aCidade.OEstado.Codigo = Convert.ToInt32(txtCodigoEstado.Text);
-            //aCtrl.Salvar(aCidade);
-            //}
+        { 
+            aCidade.Codigo = Convert.ToInt32(txtCodigo.Text);
+            aCidade.Cidade = txtCidade.Text;
+            aCidade.Ddd = txtDDD.Text;
+            aCidade.OEstado.Estado = txtEstado.Text;
+            aCidade.OEstado.Codigo = Convert.ToInt32(txtCodigoEstado.Text);
+            if (this.btnSalvar.Text == "Excluir")
+                MessageBox.Show(aCtrlCidades.Excluir(aCidade));
+            else
+                //aCtrlCidades.Salvar(oEstado);
+                MessageBox.Show(aCtrlCidades.Salvar(aCidade.Clone()));
         }
         public override void CarregaTxt()
         {
@@ -55,6 +57,8 @@ namespace FormsPEC
             this.txtCidade.Enabled = false;
             this.txtDDD.Enabled = false;
             this.btnBuscar.Enabled = false;
+            this.txtCodigoEstado.Enabled = false;
+            this.txtEstado.Enabled = false;
         }
         public override void DesbloquearTxt()
         {
@@ -62,20 +66,21 @@ namespace FormsPEC
             this.txtCidade.Enabled = true;
             this.txtDDD.Enabled = true;
             this.btnBuscar.Enabled = true;
+            this.txtCodigoEstado.Enabled = true;
+            this.txtCodigoEstado.Enabled = true;
         }
-        //public override void ConhecaObj(object obj, object ctrl)
-        //{
-        //    if (obj != null)
-        //        aCidade = (Cidades)obj;
-        //    if (ctrl != null)
-        //        aCtrl = (Controller)ctrl;
-        //}
-
+        public override void ConhecaObj(object obj, object ctrl)
+        {
+            if (obj != null)
+                aCidade = (Cidades)obj;
+            if (ctrl != null)
+                aCtrlCidades = (CtrlCidades)ctrl;
+        }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string btnSair = oFrmConsEstados.btnSair.Text;
             oFrmConsEstados.btnSair.Text = "Selecionar";
-            oFrmConsEstados.ConhecaObj(aCidade.OEstado, aCtrl);
+            oFrmConsEstados.ConhecaObj(aCidade.OEstado, aCtrlCidades.ACtrlEstados);
             oFrmConsEstados.ShowDialog();
             this.txtCodigoEstado.Text = Convert.ToString(aCidade.OEstado.Codigo);
             this.txtEstado.Text = Convert.ToString(aCidade.OEstado.Estado);

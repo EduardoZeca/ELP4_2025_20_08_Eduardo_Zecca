@@ -8,24 +8,46 @@ namespace FormsPEC
 {
     internal class CtrlEstados : Controller<Estados>
     {
-        ColEstados aColEstados;
         DaoEstados aDaoEstados;
+        //ColEstados aColEstados;
+        protected CtrlPaises aCtrlPaises;
         public CtrlEstados()
         {
-            aColEstados = new ColEstados();
             aDaoEstados = new DaoEstados();
+            //aColEstados = new ColEstados();
+        }
+        public CtrlPaises ACtrlPaises
+        {
+            get => aCtrlPaises;
+            set => aCtrlPaises = value;
         }
         public override string Salvar(object obj)
         {
             return aDaoEstados.Salvar(obj);
+            //base.Salvar(obj);
+            //Estados oEstado = (Estados)obj;
+            //if(oEstado.Codigo == 0)
+            //{
+            //    oEstado.Codigo = aColEstados.Tamanho() + 100;
+            //    aColEstados.Adicionar(oEstado.Clone());
+            //}
+            //else
+            //{
+            //    Estados oEstadoProc = aColEstados.BuscarPorUf(oEstado.Uf);
+            //    int ind = aColEstados.Buscar(oEstadoProc);
+            //    aColEstados.Atualizar(oEstado);
+            //}
         }
         public override string Excluir(object obj)
         {
             return aDaoEstados.Excluir(obj);
+            //base.Excluir(obj);
+            //Estados oEstado = (Estados)obj;
+            //aColEstados.Remover(oEstado);
         }
         public override List<Estados> Listar()
         {
-            return aColEstados.Listar();
+            return aDaoEstados.Listar();
         }
     }
 }

@@ -51,14 +51,14 @@
             // 
             this.txtCodUsu.TabIndex = 17;
             // 
+            // btnSair
+            // 
+            this.btnSair.TabIndex = 7;
+            // 
             // txtCodigo
             // 
             this.txtCodigo.Size = new System.Drawing.Size(80, 22);
             this.txtCodigo.TabIndex = 10;
-            // 
-            // btnSair
-            // 
-            this.btnSair.TabIndex = 7;
             // 
             // lblPais
             // 
@@ -90,7 +90,6 @@
             // txtPais
             // 
             this.txtPais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPais.Enabled = false;
             this.txtPais.Location = new System.Drawing.Point(474, 24);
             this.txtPais.MaxLength = 55;
             this.txtPais.Name = "txtPais";
@@ -126,7 +125,6 @@
             // 
             // txtCodigoPais
             // 
-            this.txtCodigoPais.Enabled = false;
             this.txtCodigoPais.Location = new System.Drawing.Point(393, 24);
             this.txtCodigoPais.MaxLength = 3;
             this.txtCodigoPais.Name = "txtCodigoPais";

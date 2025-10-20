@@ -13,22 +13,22 @@ namespace FormsPEC
         {
             Estados oEstado = (Estados)obj;
             string mSql = "", mOk = "";
-            if (oEstado.Codigo == 100)
-                mSql = "insert into estados(estado, uf, id_pais, datcad, ultalt) values (@estado, @uf, @id_pais, @datCad, @ultAlt)";
+            if (oEstado.Codigo == 0)
+                mSql = "insert into estados(Estado, Uf, datCad, ultAlt, id_pais) values (@estado, @uf, @datcad, @ultalt, @idPais)";
             else
-                mSql = "update estados set estado=@estado, uf=@uf, id_pais=@id_pais, datcad=@datCad, ultalt=@ultAlt where id=@id";
+                mSql = "update estados set estado=@estado, uf=@uf, datcad=@datcad, ultalt=@ultalt, id_pais=@idPais where id=@id";
 
             using (SqlCommand cmd = new SqlCommand(mSql, cnn))
             {
                 cmd.Parameters.AddWithValue("@estado", oEstado.Estado);
                 cmd.Parameters.AddWithValue("@uf", oEstado.Uf);
-                cmd.Parameters.AddWithValue("@id_pais", oEstado.OPais.Codigo);
                 cmd.Parameters.AddWithValue("@datcad", oEstado.Datcad);
                 cmd.Parameters.AddWithValue("@ultalt", oEstado.Ultalt);
+                cmd.Parameters.AddWithValue("@idPais", oEstado.OPais.Codigo);
                 cmd.Parameters.AddWithValue("@id", oEstado.Codigo);
                 cmd.ExecuteNonQuery();
                 cmd.CommandText = "select @@identity";
-                mOk = cmd.ExecuteScalar().ToString();
+                mOk = "ID SALVO: " + cmd.ExecuteScalar().ToString();
             }
             return mOk;
         }

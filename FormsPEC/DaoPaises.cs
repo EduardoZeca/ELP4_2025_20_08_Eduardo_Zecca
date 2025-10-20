@@ -15,7 +15,9 @@ namespace FormsPEC
             Paises oPais = (Paises)obj;
             string mSql = "", mOk = "";
             if (oPais.Codigo == 0)
+            {
                 mSql = "insert into paises(Pais, Sigla, DDI, Moeda, datCad, ultAlt) values (@pais, @sigla, @ddi, @moeda, @datCad, @ultAlt)";
+            }
             else
                 mSql = "update paises set Pais=@pais, Sigla=@sigla, DDI=@ddi, Moeda=@moeda, datCad=@datCad, ultAlt=@ultAlt where id=@id";
             
@@ -30,7 +32,7 @@ namespace FormsPEC
                 cmd.Parameters.AddWithValue("@id", oPais.Codigo);
                 cmd.ExecuteNonQuery();
                 cmd.CommandText = "select @@identity";
-                mOk = cmd.ExecuteScalar().ToString();
+                mOk = "ID SALVO: " + cmd.ExecuteScalar().ToString();
             }
             return mOk;
         }
@@ -60,7 +62,8 @@ namespace FormsPEC
         }
         public override List<Paises> Pesquisar(string chave)
         {
-            string mSql = "select * from paises where Pais like @chave order by id";
+            return null;
+            //string mSql = "select * from paises where Pais like @chave order by id";
         }
         public override string Excluir(object obj)
         {
