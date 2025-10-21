@@ -14,7 +14,7 @@ namespace FormsPEC
             Estados oEstado = (Estados)obj;
             string mSql = "", mOk = "";
             if (oEstado.Codigo == 0)
-                mSql = "insert into estados(Estado, Uf, datCad, ultAlt, id_pais) values (@estado, @uf, @datcad, @ultalt, @idPais)";
+                mSql = "insert into estados (Estado, Uf, datCad, ultAlt, id_pais) values (@estado, @uf, @datcad, @ultalt, @idPais)";
             else
                 mSql = "update estados set estado=@estado, uf=@uf, datcad=@datcad, ultalt=@ultalt, id_pais=@idPais where id=@id";
 
@@ -35,9 +35,10 @@ namespace FormsPEC
         public override List<Estados> Listar()
         {
             //string mSql = "select e.id, e.estado, e.uf, e.id_pais, p.pais from estados e inner join paises p on e.id_pais = p.id order by e.id";
-            string mSql = "select e.id as id_estado, e.datcad, e.ultalt, e.estado, e.uf, e.id_pais, " +
-                          "p.id as id_pais, p.datcad, p.ultalt, p.pais, p.sigla, p.ddi, p.moeda " +
-                          "from estados e inner join paises p on e.id_pais = p.id order by e.id";
+            //string mSql = "select e.id as id_estado, e.datcad, e.ultalt, e.estado, e.uf, e.id_pais, " +
+            //              "p.id as id_pais, p.datcad, p.ultalt, p.pais, p.sigla, p.ddi, p.moeda " +
+            //              "from estados e inner join paises p on e.id_pais = p.id order by e.id";
+            string mSql = "select * from estados as e inner join paises as p on p.id = e.id_pais order by e.id";
             using (SqlCommand cmd = new SqlCommand(mSql, cnn))
             {
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -54,9 +55,9 @@ namespace FormsPEC
                         reader["moeda"].ToString()
                     );
                     Estados oEstado = new Estados(
-                        Convert.ToInt32(reader["e.id_estado"]),
-                        Convert.ToDateTime(reader["e.datcad"]),
-                        Convert.ToDateTime(reader["e.ultalt"]),
+                        Convert.ToInt32(reader["id"]),
+                        Convert.ToDateTime(reader["datcad"]),
+                        Convert.ToDateTime(reader["ultalt"]),
                         reader["estado"].ToString(),
                         reader["uf"].ToString(),
                         oPais

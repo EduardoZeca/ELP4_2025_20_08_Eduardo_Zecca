@@ -29,7 +29,7 @@ namespace FormsPEC
             oEstado.Estado = txtEstado.Text;
             oEstado.Uf = txtUF.Text;
             oEstado.OPais.Pais = txtPais.Text;
-            oEstado.OPais.Codigo = Convert.ToInt32(txtCodigo.Text);
+            oEstado.OPais.Codigo = Convert.ToInt32(txtCodigoPais.Text);
             if (this.btnSalvar.Text == "Excluir")
                 MessageBox.Show(aCtrlEstados.Excluir(oEstado));
             else
