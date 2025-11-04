@@ -31,9 +31,12 @@ namespace FormsPEC
             oEstado.OPais.Pais = txtPais.Text;
             oEstado.OPais.Codigo = Convert.ToInt32(txtCodigoPais.Text);
             if (this.btnSalvar.Text == "Excluir")
+            {
+                MessageBox.Show("Deseja realmente excluir o estado " + oEstado.Estado + "?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 MessageBox.Show(aCtrlEstados.Excluir(oEstado));
+            }
             else
-                //aCtrlEstados.Salvar(oEstado);
+                //aCtrlPaises.Salvar(oPais);
                 MessageBox.Show(aCtrlEstados.Salvar(oEstado.Clone()));
         }
         public override void CarregaTxt()

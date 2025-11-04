@@ -27,6 +27,8 @@ namespace FormsPEC
         }
         protected override void Alterar()
         {
+            int codSelecionado = Convert.ToInt32(listV.SelectedItems[0].SubItems[0].Text);
+            aCidade = (Cidades)aCtrlCidades.CarregaObj(codSelecionado);
             oFrmCadCidades.ConhecaObj(aCidade, aCtrlCidades);
             oFrmCadCidades.LimpaTxt();
             oFrmCadCidades.CarregaTxt();
@@ -35,6 +37,8 @@ namespace FormsPEC
         }
         protected override void Excluir()
         {
+            int codSelecionado = Convert.ToInt32(listV.SelectedItems[0].SubItems[0].Text);
+            aCidade = (Cidades)aCtrlCidades.CarregaObj(codSelecionado);
             string aux;
 
             oFrmCadCidades.ConhecaObj(aCidade, aCtrlCidades);

@@ -34,10 +34,6 @@ namespace FormsPEC
         }
         public override List<Estados> Listar()
         {
-            //string mSql = "select e.id, e.estado, e.uf, e.id_pais, p.pais from estados e inner join paises p on e.id_pais = p.id order by e.id";
-            //string mSql = "select e.id as id_estado, e.datcad, e.ultalt, e.estado, e.uf, e.id_pais, " +
-            //              "p.id as id_pais, p.datcad, p.ultalt, p.pais, p.sigla, p.ddi, p.moeda " +
-            //              "from estados e inner join paises p on e.id_pais = p.id order by e.id";
             string mSql = "select * from estados as e inner join paises as p on p.id = e.id_pais order by e.id";
             using (SqlCommand cmd = new SqlCommand(mSql, cnn))
             {
@@ -70,11 +66,62 @@ namespace FormsPEC
         }
         public override string Excluir(object obj)
         {
-            return null;
+            Estados oEstado = (Estados)obj;
+            try
+            {
+                string mSql = "delete from estados where id = @id";
+                using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@id", oEstado.Codigo);
+                    cmd.ExecuteNonQuery();
+                }
+                return "ID: " + oEstado.Codigo + " Excluído!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
         public override Object CarregaObj(int chave)
         {
-            return null;
+            //return null;
+            string mSql = "select * from estados as e inner join paises as p on p.id = e.id_pais where e.id = @chave";
+            Paises oPais = null;
+            Estados oEstado = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@chave", chave);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        oPais = new Paises(
+                            Convert.ToInt32(reader["id_pais"]),
+                            Convert.ToDateTime(reader["datCad"]),
+                            Convert.ToDateTime(reader["ultAlt"]),
+                            reader["Pais"].ToString(),
+                            reader["Sigla"].ToString(),
+                            reader["DDI"].ToString(),
+                            reader["Moeda"].ToString()
+                        );
+                        oEstado = new Estados(
+                            Convert.ToInt32(reader["id"]),
+                            Convert.ToDateTime(reader["datCad"]),
+                            Convert.ToDateTime(reader["ultAlt"]),
+                            reader["Estado"].ToString(),
+                            reader["Uf"].ToString(),
+                            oPais
+                        );
+                    }
+                    reader.Close();
+                }
+                return oEstado;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
         public override List<Estados> Pesquisar(string chave)
         {

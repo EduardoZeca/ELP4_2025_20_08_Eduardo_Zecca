@@ -52,5 +52,9 @@ namespace FormsPEC
         {
             return aDaoCidades.Listar();
         }
+        public override object CarregaObj(int chave)
+        {
+            return aDaoCidades.CarregaObj(chave);
+        }
     }
 }

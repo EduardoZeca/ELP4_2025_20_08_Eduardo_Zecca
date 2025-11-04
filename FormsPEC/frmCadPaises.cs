@@ -25,7 +25,10 @@ namespace FormsPEC
             oPais.Ddi = txtDDI.Text;
             oPais.Moeda = txtMoeda.Text;
             if (this.btnSalvar.Text == "Excluir")
+            {
+                MessageBox.Show("Deseja realmente excluir o país " + oPais.Pais + "?","Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 MessageBox.Show(aCtrlPaises.Excluir(oPais));
+            }
             else
                 //aCtrlPaises.Salvar(oPais);
                 MessageBox.Show(aCtrlPaises.Salvar(oPais.Clone()));

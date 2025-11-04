@@ -38,7 +38,21 @@ namespace FormsPEC
         }
         public override string Excluir(object obj)
         {
-            return null;
+            Cidades aCidade = (Cidades)obj;
+            try
+            {
+                string mSql = "delete from cidades where id = @id";
+                using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@id", aCidade.Codigo);
+                    cmd.ExecuteNonQuery();
+                }
+                return "ID: " + aCidade.Codigo + " Excluído!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
         public override List<Cidades> Listar()
         {
@@ -68,6 +82,56 @@ namespace FormsPEC
                 }
             }
             return listaCidades;
+        }
+        public override Object CarregaObj(int chave)
+        {
+            //return null;
+            string mSql = "select * from cidades as c inner join estados as e on e.id = c.id_estado inner join paises as p on p.id = e.id_pais where c.id = @chave";
+            Paises oPais = null;
+            Estados oEstado = null;
+            Cidades aCidade = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@chave", chave);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        oPais = new Paises(
+                            Convert.ToInt32(reader["id_pais"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            Convert.ToString(reader["pais"]),
+                            Convert.ToString(reader["sigla"]),
+                            Convert.ToString(reader["ddi"]),
+                            Convert.ToString(reader["moeda"])
+                        );
+                        oEstado = new Estados(
+                            Convert.ToInt32(reader["id_estado"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            Convert.ToString(reader["estado"]),
+                            Convert.ToString(reader["uf"]),
+                            oPais
+                        );
+                        aCidade = new Cidades(
+                            Convert.ToInt32(reader["id"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            Convert.ToString(reader["cidade"]),
+                            Convert.ToString(reader["ddd"]),
+                            oEstado
+                        );
+                    }
+                    reader.Close();
+                }
+                return aCidade;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

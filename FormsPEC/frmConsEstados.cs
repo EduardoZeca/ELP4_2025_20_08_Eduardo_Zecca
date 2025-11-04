@@ -27,6 +27,8 @@ namespace FormsPEC
         }
         protected override void Alterar()
         {
+            int codSelecionado = Convert.ToInt32(listV.SelectedItems[0].SubItems[0].Text);
+            oEstado = (Estados)aCtrlEstados.CarregaObj(codSelecionado);
             oFrmCadEstados.ConhecaObj(oEstado, aCtrlEstados);
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.CarregaTxt();
@@ -35,6 +37,9 @@ namespace FormsPEC
         }
         protected override void Excluir()
         {
+            int codSelecionado = Convert.ToInt32(listV.SelectedItems[0].SubItems[0].Text);
+            oEstado = (Estados)aCtrlEstados.CarregaObj(codSelecionado);
+
             string aux;
 
             oFrmCadEstados.ConhecaObj(oEstado, aCtrlEstados);
