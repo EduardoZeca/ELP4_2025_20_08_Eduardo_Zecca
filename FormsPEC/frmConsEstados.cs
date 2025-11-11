@@ -58,20 +58,36 @@ namespace FormsPEC
         }
         protected override void CarregaLV(string chave)
         {
-            listV.Items.Clear();
-            foreach (var oEstado in aCtrlEstados.Listar())
+            if (chave == "")
             {
-                ListViewItem item = new ListViewItem(Convert.ToString(oEstado.Codigo));
-                item.SubItems.Add(oEstado.Estado);
-                item.SubItems.Add(oEstado.Uf);
-                item.SubItems.Add(Convert.ToString(oEstado.OPais.Codigo));
-                item.SubItems.Add(oEstado.OPais.Pais);
-                listV.Items.Add(item);
+                listV.Items.Clear();
+                foreach (Estados estado in aCtrlEstados.Listar())
+                {
+                    ListViewItem item = new ListViewItem(Convert.ToString(estado.Codigo));
+                    item.SubItems.Add(estado.Estado);
+                    item.SubItems.Add(estado.Uf);
+                    item.SubItems.Add(Convert.ToString(estado.OPais.Codigo));
+                    item.SubItems.Add(estado.OPais.Pais);
+                    listV.Items.Add(item);
+                }
+            }
+            else
+            {
+                listV.Items.Clear();
+                foreach (Estados estado in aCtrlEstados.Pesquisar(chave))
+                {
+                    ListViewItem item = new ListViewItem(Convert.ToString(estado.Codigo));
+                    item.SubItems.Add(estado.Estado);
+                    item.SubItems.Add(estado.Uf);
+                    item.SubItems.Add(Convert.ToString(estado.OPais.Codigo));
+                    item.SubItems.Add(estado.OPais.Pais);
+                    listV.Items.Add(item);
+                }
             }
         }
         protected override void Pesquisar()
         {
-            this.CarregaLV("");
+            this.CarregaLV(txtCodigo.Text);
         }
         public override void setFrmCadastro(object obj)
         {

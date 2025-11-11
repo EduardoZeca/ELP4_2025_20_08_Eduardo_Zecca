@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,33 +36,39 @@ namespace FormsPEC
         public override List<Estados> Listar()
         {
             string mSql = "select * from estados as e inner join paises as p on p.id = e.id_pais order by e.id";
-            using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+            try
             {
-                SqlDataReader reader = cmd.ExecuteReader();
-                List<Estados> lista = new List<Estados>();
-                while (reader.Read())
+                using (SqlCommand cmd = new SqlCommand(mSql, cnn))
                 {
-                    Paises oPais = new Paises (
-                        Convert.ToInt32(reader["id_pais"]),
-                        Convert.ToDateTime(reader["datcad"]),
-                        Convert.ToDateTime(reader["ultalt"]),
-                        reader["pais"].ToString(),
-                        reader["sigla"].ToString(),
-                        reader["ddi"].ToString(),
-                        reader["moeda"].ToString()
-                    );
-                    Estados oEstado = new Estados(
-                        Convert.ToInt32(reader["id"]),
-                        Convert.ToDateTime(reader["datcad"]),
-                        Convert.ToDateTime(reader["ultalt"]),
-                        reader["estado"].ToString(),
-                        reader["uf"].ToString(),
-                        oPais
-                    );
-                    lista.Add(oEstado);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<Estados> lista = new List<Estados>();
+                    while (reader.Read())
+                    {
+                        Paises oPais = new Paises(
+                            Convert.ToInt32(reader["id_pais"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            reader["pais"].ToString(),
+                            reader["sigla"].ToString(),
+                            reader["ddi"].ToString(),
+                            reader["moeda"].ToString()
+                        );
+                        Estados oEstado = new Estados(
+                            Convert.ToInt32(reader["id"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            reader["estado"].ToString(),
+                            reader["uf"].ToString(),
+                            oPais
+                        );
+                        lista.Add(oEstado);
+                    }
+                    reader.Close();
+                    return lista;
                 }
-                reader.Close();
-                return lista;
+            } catch (Exception ex)
+            {
+                throw ex;
             }
         }
         public override string Excluir(object obj)
@@ -125,7 +132,36 @@ namespace FormsPEC
         }
         public override List<Estados> Pesquisar(string chave)
         {
-            return null;
+            string mSql = "select * from estados as e inner join paises as p on e.id_pais = p.id where e.estado like @chave or e.id like @chave or e.uf like @chave or e.id_pais like @chave or p.pais like @chave";
+            using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+            {
+                cmd.Parameters.AddWithValue("@chave", "%" + chave + "%");
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Estados> lista = new List<Estados>();
+                while (reader.Read())
+                {
+                    Paises oPais = new Paises(
+                        Convert.ToInt32(reader["id_pais"]),
+                        Convert.ToDateTime(reader["datCad"]),
+                        Convert.ToDateTime(reader["ultAlt"]),
+                        reader["Pais"].ToString(),
+                        reader["Sigla"].ToString(),
+                        reader["DDI"].ToString(),
+                        reader["Moeda"].ToString()
+                    );
+                    Estados oEstado = new Estados(
+                            Convert.ToInt32(reader["id"]),
+                            Convert.ToDateTime(reader["datCad"]),
+                            Convert.ToDateTime(reader["ultAlt"]),
+                            reader["Estado"].ToString(),
+                            reader["Uf"].ToString(),
+                            oPais
+                        );
+                    lista.Add(oEstado);
+                }
+                reader.Close();
+                return lista;
+            }
         }
     }
 }

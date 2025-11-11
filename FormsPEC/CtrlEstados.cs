@@ -53,5 +53,9 @@ namespace FormsPEC
         {
             return aDaoEstados.CarregaObj(chave);
         }
+        public override List<Estados> Pesquisar(string chave)
+        {
+            return aDaoEstados.Pesquisar(chave);
+        }
     }
 }

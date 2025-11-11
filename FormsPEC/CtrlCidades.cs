@@ -56,5 +56,9 @@ namespace FormsPEC
         {
             return aDaoCidades.CarregaObj(chave);
         }
+        public override List<Cidades> Pesquisar(string chave)
+        {
+            return aDaoCidades.Pesquisar(chave);
+        }
     }
 }

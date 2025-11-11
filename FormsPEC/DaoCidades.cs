@@ -56,32 +56,78 @@ namespace FormsPEC
         }
         public override List<Cidades> Listar()
         {
-            List<Cidades> listaCidades = new List<Cidades>();
-            string mSql = @"select c.id, c.cidade, c.ddd, e.id, e.estado from cidades c inner join estados e on c.id_estado = e.id order by c.id_estado";
-            using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+            string mSql = "select * from cidades as c inner join estados as e on e.id = c.id_estado inner join paises as p on p.id = e.id_pais order by c.id";
+            try
             {
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(mSql, cnn))
                 {
-
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<Cidades> lista = new List<Cidades>();
                     while (reader.Read())
                     {
-                        Estados oEstado = new Estados
-                        {
-                            Codigo = Convert.ToInt32(reader["id"]),
-                            Estado = Convert.ToString(reader["estado"])
-                        };
-                        Cidades aCidade = new Cidades
-                        {
-                            Codigo = Convert.ToInt32(reader["id"]),
-                            Cidade = Convert.ToString(reader["cidade"]),
-                            Ddd = Convert.ToString(reader["ddd"]),
-                            OEstado = oEstado
-                        };
-                        listaCidades.Add(aCidade);
+                        Paises oPais = new Paises(
+                            Convert.ToInt32(reader["id_pais"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            reader["pais"].ToString(),
+                            reader["sigla"].ToString(),
+                            reader["ddi"].ToString(),
+                            reader["moeda"].ToString()
+                        );
+                        Estados oEstado = new Estados(
+                            Convert.ToInt32(reader["id_estado"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            reader["estado"].ToString(),
+                            reader["uf"].ToString(),
+                            oPais
+                        );
+                        Cidades aCidade = new Cidades(
+                            Convert.ToInt32(reader["id"]),
+                            Convert.ToDateTime(reader["datcad"]),
+                            Convert.ToDateTime(reader["ultalt"]),
+                            reader["cidade"].ToString(),
+                            reader["ddd"].ToString(),
+                            oEstado
+                        );
+                        lista.Add(aCidade);
                     }
+                    reader.Close();
+                    return lista;
                 }
             }
-            return listaCidades;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public override List<Cidades> Pesquisar(string chave)
+        {
+            string mSql = "select * from cidades as c inner join estados as e on c.id_estado = e.id where c.cidade like @chave or c.id like @chave or c.ddd like @chave or c.id_estado like @chave or e.estado like @chave";
+            using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+            {
+                cmd.Parameters.AddWithValue("@chave", "%" + chave + "%");
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Cidades> lista = new List<Cidades>();
+                while (reader.Read())
+                {
+                    Estados oEstado = new Estados
+                    {
+                        Codigo = Convert.ToInt32(reader["id"]),
+                        Estado = Convert.ToString(reader["estado"])
+                    };
+                    Cidades aCidade = new Cidades
+                    {
+                        Codigo = Convert.ToInt32(reader["id"]),
+                        Cidade = Convert.ToString(reader["cidade"]),
+                        Ddd = Convert.ToString(reader["ddd"]),
+                        OEstado = oEstado
+                    };
+                    lista.Add(aCidade);
+                }
+                reader.Close();
+                return lista;
+            }
         }
         public override Object CarregaObj(int chave)
         {
