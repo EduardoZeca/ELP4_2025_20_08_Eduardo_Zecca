@@ -62,11 +62,11 @@ namespace FormsPEC
                 listV.Items.Clear();
                 foreach (Cidades cidade in aCtrlCidades.Listar())
                 {
-                    ListViewItem item = new ListViewItem(Convert.ToString(aCidade.Codigo));
-                    item.SubItems.Add(aCidade.Cidade);
-                    item.SubItems.Add(aCidade.Ddd);
-                    item.SubItems.Add(aCidade.OEstado.Codigo.ToString());
-                    item.SubItems.Add(aCidade.OEstado.Estado);
+                    ListViewItem item = new ListViewItem(Convert.ToString(cidade.Codigo));
+                    item.SubItems.Add(cidade.Cidade);
+                    item.SubItems.Add(cidade.Ddd);
+                    item.SubItems.Add(cidade.OEstado.Codigo.ToString());
+                    item.SubItems.Add(cidade.OEstado.Estado);
                     listV.Items.Add(item);
                 }
             }
@@ -75,11 +75,11 @@ namespace FormsPEC
                 listV.Items.Clear();
                 foreach (Cidades cidade in aCtrlCidades.Pesquisar(chave))
                 {
-                    ListViewItem item = new ListViewItem(Convert.ToString(aCidade.Codigo));
-                    item.SubItems.Add(aCidade.Cidade);
-                    item.SubItems.Add(aCidade.Ddd);
-                    item.SubItems.Add(aCidade.OEstado.Codigo.ToString());
-                    item.SubItems.Add(aCidade.OEstado.Estado);
+                    ListViewItem item = new ListViewItem(Convert.ToString(cidade.Codigo));
+                    item.SubItems.Add(cidade.Cidade);
+                    item.SubItems.Add(cidade.Ddd);
+                    item.SubItems.Add(cidade.OEstado.Codigo.ToString());
+                    item.SubItems.Add(cidade.OEstado.Estado);
                     listV.Items.Add(item);
                 }
             }

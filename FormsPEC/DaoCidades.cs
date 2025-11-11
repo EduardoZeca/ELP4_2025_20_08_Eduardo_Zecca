@@ -56,7 +56,7 @@ namespace FormsPEC
         }
         public override List<Cidades> Listar()
         {
-            string mSql = "select * from cidades as c inner join estados as e on e.id = c.id_estado inner join paises as p on p.id = e.id_pais order by c.id";
+            string mSql = "select c.id as id_cidade, c.cidade, c.ddd, e.id as est_id, e.estado from cidades as c inner join estados as e on e.id = c.id_estado order by c.id";
             try
             {
                 using (SqlCommand cmd = new SqlCommand(mSql, cnn))
@@ -65,31 +65,14 @@ namespace FormsPEC
                     List<Cidades> lista = new List<Cidades>();
                     while (reader.Read())
                     {
-                        Paises oPais = new Paises(
-                            Convert.ToInt32(reader["id_pais"]),
-                            Convert.ToDateTime(reader["datcad"]),
-                            Convert.ToDateTime(reader["ultalt"]),
-                            reader["pais"].ToString(),
-                            reader["sigla"].ToString(),
-                            reader["ddi"].ToString(),
-                            reader["moeda"].ToString()
-                        );
-                        Estados oEstado = new Estados(
-                            Convert.ToInt32(reader["id_estado"]),
-                            Convert.ToDateTime(reader["datcad"]),
-                            Convert.ToDateTime(reader["ultalt"]),
-                            reader["estado"].ToString(),
-                            reader["uf"].ToString(),
-                            oPais
-                        );
-                        Cidades aCidade = new Cidades(
-                            Convert.ToInt32(reader["id"]),
-                            Convert.ToDateTime(reader["datcad"]),
-                            Convert.ToDateTime(reader["ultalt"]),
-                            reader["cidade"].ToString(),
-                            reader["ddd"].ToString(),
-                            oEstado
-                        );
+                        Estados oEstado = new Estados();
+                        oEstado.Codigo = Convert.ToInt32(reader["est_id"]);
+                        oEstado.Estado = Convert.ToString(reader["estado"]);
+                        Cidades aCidade = new Cidades();
+                        aCidade.Codigo = Convert.ToInt32(reader["id_cidade"]);
+                        aCidade.Cidade = Convert.ToString(reader["cidade"]);
+                        aCidade.Ddd = Convert.ToString(reader["ddd"]);
+                        aCidade.OEstado = oEstado;
                         lista.Add(aCidade);
                     }
                     reader.Close();
@@ -98,7 +81,7 @@ namespace FormsPEC
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Erro ao listar as cidades: " + ex.Message);
             }
         }
         public override List<Cidades> Pesquisar(string chave)
