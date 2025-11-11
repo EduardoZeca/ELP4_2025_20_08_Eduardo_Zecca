@@ -31,7 +31,7 @@ namespace FormsPEC
         {
 
         }
-        protected virtual void CarregaLV()
+        protected virtual void CarregaLV(string chave)
         { 
         
         }

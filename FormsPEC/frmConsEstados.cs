@@ -23,7 +23,7 @@ namespace FormsPEC
             oFrmCadEstados.ConhecaObj(oEstado, aCtrlEstados);
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.ShowDialog();
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         protected override void Alterar()
         {
@@ -33,7 +33,7 @@ namespace FormsPEC
             oFrmCadEstados.LimpaTxt();
             oFrmCadEstados.CarregaTxt();
             oFrmCadEstados.ShowDialog();
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         protected override void Excluir()
         {
@@ -54,9 +54,9 @@ namespace FormsPEC
             oFrmCadEstados.DesbloquearTxt();
 
             oFrmCadEstados.btnSalvar.Text = aux;
-            this.CarregaLV();
+            this.CarregaLV("");
         }
-        protected override void CarregaLV()
+        protected override void CarregaLV(string chave)
         {
             listV.Items.Clear();
             foreach (var oEstado in aCtrlEstados.Listar())
@@ -71,7 +71,7 @@ namespace FormsPEC
         }
         protected override void Pesquisar()
         {
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         public override void setFrmCadastro(object obj)
         {
@@ -84,6 +84,7 @@ namespace FormsPEC
                 oEstado = (Estados)obj;
             if (ctrl != null)
                 aCtrlEstados = (CtrlEstados)ctrl;
+            this.CarregaLV("");
         }
     }
 }

@@ -74,7 +74,28 @@ namespace FormsPEC
         }
         public override List<Paises> Pesquisar(string chave)
         {
-            return null;
+            string mSql = "select * from paises where Pais like @chave or id like @chave or sigla like @chave or ddi like @chave or moeda like @chave";
+            using (SqlCommand cmd = new SqlCommand(mSql, cnn))
+            {
+                cmd.Parameters.AddWithValue("@chave", "%" + chave + "%");
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Paises> lista = new List<Paises>();
+                while (reader.Read())
+                {
+                    Paises oPais = new Paises(
+                        Convert.ToInt32(reader["id"]),
+                        Convert.ToDateTime(reader["datCad"]),
+                        Convert.ToDateTime(reader["ultAlt"]),
+                        reader["Pais"].ToString(),
+                        reader["Sigla"].ToString(),
+                        reader["DDI"].ToString(),
+                        reader["Moeda"].ToString()
+                    );
+                    lista.Add(oPais);
+                }
+                reader.Close();
+                return lista;
+            }
         }
         public override string Excluir(object obj)
         {

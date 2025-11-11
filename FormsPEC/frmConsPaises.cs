@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -22,7 +23,7 @@ namespace FormsPEC
             oFrmCadPaises.ConhecaObj(oPais, aCtrlPaises);
             oFrmCadPaises.LimpaTxt();
             oFrmCadPaises.ShowDialog();
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         protected override void Alterar()
         {
@@ -32,7 +33,7 @@ namespace FormsPEC
             oFrmCadPaises.LimpaTxt();
             oFrmCadPaises.CarregaTxt();
             oFrmCadPaises.ShowDialog();
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         protected override void Excluir()
         {
@@ -52,25 +53,39 @@ namespace FormsPEC
             oFrmCadPaises.DesbloquearTxt();
 
             oFrmCadPaises.btnSalvar.Text = aux;
-            this.CarregaLV();
+            this.CarregaLV("");
         }
-        protected override void CarregaLV()
+        protected override void CarregaLV(string chave)
         {
-            listV.Items.Clear();
-            foreach (Paises pais in aCtrlPaises.Listar())
+            if (chave == "")
             {
-                ListViewItem item = new ListViewItem(Convert.ToString(pais.Codigo));
-                item.SubItems.Add(pais.Pais);
-                item.SubItems.Add(pais.Sigla);
-                item.SubItems.Add(pais.Ddi);
-                item.SubItems.Add(pais.Moeda);
-                listV.Items.Add(item);
+                listV.Items.Clear();
+                foreach (Paises pais in aCtrlPaises.Listar())
+                {
+                    ListViewItem item = new ListViewItem(Convert.ToString(pais.Codigo));
+                    item.SubItems.Add(pais.Pais);
+                    item.SubItems.Add(pais.Sigla);
+                    item.SubItems.Add(pais.Ddi);
+                    item.SubItems.Add(pais.Moeda);
+                    listV.Items.Add(item);
+                }
+            } else
+            {
+                listV.Items.Clear();
+                foreach (Paises pais in aCtrlPaises.Pesquisar(chave))
+                {
+                    ListViewItem item = new ListViewItem(Convert.ToString(pais.Codigo));
+                    item.SubItems.Add(pais.Pais);
+                    item.SubItems.Add(pais.Sigla);
+                    item.SubItems.Add(pais.Ddi);
+                    item.SubItems.Add(pais.Moeda);
+                    listV.Items.Add(item);
+                }
             }
         }
         protected override void Pesquisar()
         {
-            //aCtrlPaises.Buscar();
-            this.CarregaLV();
+            this.CarregaLV(txtCodigo.Text);
         }
         public override void setFrmCadastro(object obj)
         {
@@ -83,6 +98,7 @@ namespace FormsPEC
                 oPais = (Paises)obj;
             if(ctrl != null)
                 aCtrlPaises = (CtrlPaises)ctrl;
+            this.CarregaLV("");
         }
         private void btnPesquisar_Click(object sender, EventArgs e)
         {

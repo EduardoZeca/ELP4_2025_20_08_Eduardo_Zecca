@@ -23,7 +23,7 @@ namespace FormsPEC
             oFrmCadCidades.ConhecaObj(aCidade, aCtrlCidades);
             oFrmCadCidades.LimpaTxt();
             oFrmCadCidades.ShowDialog();
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         protected override void Alterar()
         {
@@ -33,7 +33,7 @@ namespace FormsPEC
             oFrmCadCidades.LimpaTxt();
             oFrmCadCidades.CarregaTxt();
             oFrmCadCidades.ShowDialog();
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         protected override void Excluir()
         {
@@ -53,9 +53,9 @@ namespace FormsPEC
             oFrmCadCidades.DesbloquearTxt();
 
             oFrmCadCidades.btnSalvar.Text = aux;
-            this.CarregaLV();
+            this.CarregaLV("");
         }
-        protected override void CarregaLV()
+        protected override void CarregaLV(string chave)
         {
             listV.Items.Clear();
             foreach (var aCidade in aCtrlCidades.Listar())
@@ -70,7 +70,7 @@ namespace FormsPEC
         }
         protected override void Pesquisar()
         {
-            this.CarregaLV();
+            this.CarregaLV("");
         }
         public override void setFrmCadastro(object obj)
         {
@@ -83,6 +83,7 @@ namespace FormsPEC
                 aCidade = (Cidades)obj;
             if (ctrl != null)
                 aCtrlCidades = (CtrlCidades)ctrl;
+            this.CarregaLV("");
         }
     }
 }

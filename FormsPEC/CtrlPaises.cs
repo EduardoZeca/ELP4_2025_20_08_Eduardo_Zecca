@@ -60,6 +60,9 @@ namespace FormsPEC
         {
             return aDaoPaises.CarregaObj(chave);
         }
-
+        public override List<Paises> Pesquisar(string chave)
+        {
+            return aDaoPaises.Pesquisar(chave);
+        }
     }
 }
