@@ -67,6 +67,7 @@ namespace FormsPEC
                     item.SubItems.Add(pais.Sigla);
                     item.SubItems.Add(pais.Ddi);
                     item.SubItems.Add(pais.Moeda);
+                    item.Tag = pais;
                     listV.Items.Add(item);
                 }
             } else
@@ -103,6 +104,20 @@ namespace FormsPEC
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             Pesquisar();
+        }
+
+        private void listV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listV.SelectedItems.Count > 0)
+            {
+                ListViewItem item = this.listV.SelectedItems[0];
+                Paises paisSelecionado = (Paises)item.Tag;
+                oPais.Codigo = paisSelecionado.Codigo;
+                oPais.Pais = paisSelecionado.Pais;
+                oPais.Ddi = paisSelecionado.Ddi;
+                oPais.Sigla = paisSelecionado.Sigla;
+                oPais.Moeda = paisSelecionado.Moeda;
+            }
         }
     }
 }

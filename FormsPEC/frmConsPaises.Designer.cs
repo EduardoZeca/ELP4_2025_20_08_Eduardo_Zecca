@@ -61,6 +61,7 @@
             this.colSigla,
             this.colDDI,
             this.colMoeda});
+            this.listV.SelectedIndexChanged += new System.EventHandler(this.listV_SelectedIndexChanged);
             // 
             // btnSair
             // 

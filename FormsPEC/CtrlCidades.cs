@@ -15,6 +15,7 @@ namespace FormsPEC
         public CtrlCidades()
         {
             aColCidades = new ColCidades();
+            aCtrlEstados = new CtrlEstados();
             aDaoCidades = new DaoCidades();
         }
         public CtrlEstados ACtrlEstados

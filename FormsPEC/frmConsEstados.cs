@@ -68,6 +68,7 @@ namespace FormsPEC
                     item.SubItems.Add(estado.Uf);
                     item.SubItems.Add(Convert.ToString(estado.OPais.Codigo));
                     item.SubItems.Add(estado.OPais.Pais);
+                    item.Tag = estado;
                     listV.Items.Add(item);
                 }
             }
@@ -101,6 +102,19 @@ namespace FormsPEC
             if (ctrl != null)
                 aCtrlEstados = (CtrlEstados)ctrl;
             this.CarregaLV("");
+        }
+        private void listV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listV.SelectedItems.Count > 0)
+            {
+                ListViewItem item = this.listV.SelectedItems[0];
+                Estados estadoSelecionado = (Estados)item.Tag;
+                oEstado.Codigo = estadoSelecionado.Codigo;
+                oEstado.Estado = estadoSelecionado.Estado;
+                oEstado.Uf = estadoSelecionado.Uf;
+                oEstado.OPais.Pais = estadoSelecionado.OPais.Pais;
+                oEstado.OPais.Codigo = estadoSelecionado.OPais.Codigo;
+            }
         }
     }
 }
